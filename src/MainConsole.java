@@ -38,7 +38,7 @@ public class MainConsole{
                 break;
             }
         }
-        
+        scanner.close();
 
     }
 }
