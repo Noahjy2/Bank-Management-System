@@ -39,6 +39,6 @@ public class Account {
 
     @Override
     public String toString(){
-        return "Account Number: " + this.accountNumber + "\nOwner Name: " + this.ownerName + "\nBalance: " + this.balance; 
+        return "Account Number: " + this.accountNumber + "\nOwner Name: " + this.ownerName + "\nBalance: " + String.format("%.2f", this.balance); 
     }
 }

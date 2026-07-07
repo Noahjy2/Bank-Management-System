@@ -15,6 +15,7 @@ public class Bank {
             }
         }
         accounts.add(newAccount);
+        System.out.println("Account created successfully!");
     }
 
     public Account findAccount(String accountNumber){
@@ -34,8 +35,6 @@ public class Bank {
             System.out.println(account.toString());
         }
     }
-
-
 
 
 }
