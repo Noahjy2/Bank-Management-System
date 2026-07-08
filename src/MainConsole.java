@@ -89,7 +89,6 @@ public class MainConsole{
         scanner.nextLine(); // Consume the newline character
         
         account.deposit(depositAmount);
-        System.out.println("Deposit successful. New Balance: " + String.format("%.2f", account.getBalance()));
     }
 
     public static void withdraw(Scanner scanner, Bank bank){
@@ -107,7 +106,6 @@ public class MainConsole{
         scanner.nextLine(); // Consume the newline character
         
         account.withdraw(withdrawAmount);
-        System.out.println("Withdraw successful. New Balance: " + String.format("%.2f", account.getBalance()));
     }
     
 }

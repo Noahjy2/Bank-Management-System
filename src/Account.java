@@ -25,7 +25,14 @@ public class Account {
         this.ownerName = ownerName;
     }
     public void deposit(double value){
-        this.balance += value;
+        if (value < 0){
+            System.out.println("Amount cannot be negative");
+            return;
+        } else {
+            this.balance += value;
+            System.out.println("Deposit successful. New Balance: " + String.format("%.2f", this.getBalance()));
+        }
+        
     }
     public void withdraw(double value){
         if (value < 0){
@@ -34,6 +41,7 @@ public class Account {
             System.out.println("Balance is not enough");
         } else {
             this.balance -= value;
+            System.out.println("Withdraw successful. New Balance: " + String.format("%.2f", this.balance));
         }
     }
 
