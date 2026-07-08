@@ -30,9 +30,9 @@ public class MainConsole{
 
             switch (choice) {
                 case "1" -> createAccount(scanner, bank);
-                case "2" -> deposit(scanner, bank);
-                case "3" -> withdraw(scanner, bank);
-                case "4" -> System.out.print("Transfer");//transfer(scanner, bank);
+                case "2" -> depositFund(scanner, bank);
+                case "3" -> withdrawFund(scanner, bank);
+                case "4" -> transferFund(scanner, bank);
                 case "5" -> viewAccount(scanner, bank);
                 case "6" -> bank.displayAllAccounts();
                 case "7" -> System.out.println("Good Bye🫡");
@@ -74,7 +74,7 @@ public class MainConsole{
         }
     }
 
-    public static void deposit(Scanner scanner, Bank bank){
+    public static void depositFund(Scanner scanner, Bank bank){
         System.out.print("Enter Account Number: ");
         String accountNumber = scanner.nextLine();
 
@@ -91,7 +91,7 @@ public class MainConsole{
         account.deposit(depositAmount);
     }
 
-    public static void withdraw(Scanner scanner, Bank bank){
+    public static void withdrawFund(Scanner scanner, Bank bank){
         System.out.print("Enter Account Number: ");
         String accountNumber = scanner.nextLine();
 
@@ -108,4 +108,41 @@ public class MainConsole{
         account.withdraw(withdrawAmount);
     }
     
+    public static void transferFund(Scanner scanner, Bank bank){
+        System.out.print("Enter Source Account Number: ");
+        String sourceAccountNumber = scanner.nextLine();
+
+        Account sourceAccount = bank.findAccount(sourceAccountNumber);
+        if (sourceAccount == null){
+            System.out.println("Account not found");
+            return;
+        }
+
+        System.out.print("Enter Destination Account Number: ");
+        String destiAccountNumber = scanner.nextLine();
+
+        Account destiAccount = bank.findAccount(destiAccountNumber);
+        if (destiAccount == null){
+            System.out.println("Account not found");
+            return;
+        }
+
+        if (sourceAccount == destiAccount){
+            System.out.println("Cannot transfer to the same account");
+            return;
+        }
+
+        System.out.print("Transfer Amount: ");
+        double transferAmount = scanner.nextDouble();
+        scanner.nextLine(); // Consume the newline character
+
+        if (transferAmount < 0){
+            System.out.println("Transfer Amount cannot be negative");
+            return;
+        }
+
+        sourceAccount.withdraw(transferAmount);
+        destiAccount.deposit(transferAmount);
+        System.out.println("Transfer successful.");
+    }
 }

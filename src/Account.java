@@ -24,6 +24,7 @@ public class Account {
     public void setOwnerName(String ownerName){
         this.ownerName = ownerName;
     }
+    
     public void deposit(double value){
         if (value < 0){
             System.out.println("Amount cannot be negative");
