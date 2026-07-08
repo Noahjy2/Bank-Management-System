@@ -18,10 +18,9 @@ A simple Bank Management System built with Java to practice Object-Oriented Prog
 
 
 ## Project Structure
-src/
-├── MainConsole.java   // User interface
-├── Bank.java          // Bank management logic
-└── Account.java       // Account model
+- **MainConsole.java** - Handles user interaction and menu navigation.
+- **Bank.java** - Manages all bank accounts and banking operations.
+- **Account.java** - Represents a bank account and its behaviors.
 
 
 ## Requirements
