@@ -1,6 +1,7 @@
 # Bank-Management-System
 
 A simple Bank Management System built with Java to practice Object-Oriented Programming (OOP).
+![alt text](image.png)
 
 ## Features
 - Create Account
