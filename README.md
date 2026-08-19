@@ -44,7 +44,7 @@ A simple Bank Management System built with Java to practice Object-Oriented Prog
 
 
 ## Future Improvements
-- Transaction history
 - Input validation
+- JavaFX 
 
 
