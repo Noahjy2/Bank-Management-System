@@ -1,20 +1,21 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MainConsole{
     public static void main(String[] args){
         
         Bank bank = new Bank();
+        FileManager file = new FileManager();
+        ArrayList<Account> accounts = new ArrayList<>();
 
-        //Add account to the bank for testing purpose
-        Account account = new Account("123456", "John Doe", 1000.0);
-        bank.createAccount(account);
+        file.readAccounts(accounts);
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Bank Management System");
 
         while (true){
             System.out.print("""
-                ===========Main Menu=========
+                \n===========Main Menu=========
 
                 1. Create Account
                 2. Deposit
@@ -29,12 +30,12 @@ public class MainConsole{
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> createAccount(scanner, bank);
-                case "2" -> depositFund(scanner, bank);
-                case "3" -> withdrawFund(scanner, bank);
-                case "4" -> transferFund(scanner, bank);
-                case "5" -> viewAccount(scanner, bank);
-                case "6" -> bank.displayAllAccounts();
+                case "1" -> bank.createAccount(scanner, accounts, file);
+                case "2" -> bank.depositFund(scanner, accounts);
+                case "3" -> bank.withdrawFund(scanner,accounts);
+                case "4" -> bank.transferFund(scanner,accounts);
+                case "5" -> bank.viewAccount(scanner,accounts);
+                case "6" -> bank.displayAllAccounts(accounts);
                 case "7" -> System.out.println("Good Bye🫡");
                 default -> System.out.println("Invalid choice");
             }
@@ -44,105 +45,6 @@ public class MainConsole{
             }
         }
         scanner.close();
-
-    }
-    public static void createAccount(Scanner scanner, Bank bank){
-        System.out.print("Enter Account Number: ");
-        String accountNumber = scanner.nextLine();
-
-        System.out.print("Enter Account Holder Name: ");
-        String accountHolderName = scanner.nextLine();
-
-        System.out.print("Enter Initial Balance Amount: ");
-        double initialBalance = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
-        
-        Account account = new Account(accountNumber, accountHolderName, initialBalance);
-        bank.createAccount(account);
-    }
-
-    public static void viewAccount(Scanner scanner, Bank bank){
-        System.out.print("Enter Account Number: ");
-        String accountNumber = scanner.nextLine();
-        
-        Account account = bank.findAccount(accountNumber);
-
-        if (account != null){
-            System.out.println('\n' + account.toString());
-        } else {
-            System.out.println("Account not found");
-        }
-    }
-
-    public static void depositFund(Scanner scanner, Bank bank){
-        System.out.print("Enter Account Number: ");
-        String accountNumber = scanner.nextLine();
-
-        Account account = bank.findAccount(accountNumber);
-        if (account == null){
-            System.out.println("Account not found");
-            return;
-        }
-
-        System.out.print("Enter Deposit Amount: ");
-        double depositAmount = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
-        
-        account.deposit(depositAmount);
-    }
-
-    public static void withdrawFund(Scanner scanner, Bank bank){
-        System.out.print("Enter Account Number: ");
-        String accountNumber = scanner.nextLine();
-
-        Account account = bank.findAccount(accountNumber);
-        if (account == null){
-            System.out.println("Account not found");
-            return;
-        }
-
-        System.out.print("Enter Withdraw Amount: ");
-        double withdrawAmount = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
-        
-        account.withdraw(withdrawAmount);
     }
     
-    public static void transferFund(Scanner scanner, Bank bank){
-        System.out.print("Enter Source Account Number: ");
-        String sourceAccountNumber = scanner.nextLine();
-
-        Account sourceAccount = bank.findAccount(sourceAccountNumber);
-        if (sourceAccount == null){
-            System.out.println("Account not found");
-            return;
-        }
-
-        System.out.print("Enter Destination Account Number: ");
-        String destiAccountNumber = scanner.nextLine();
-
-        Account destiAccount = bank.findAccount(destiAccountNumber);
-        if (destiAccount == null){
-            System.out.println("Account not found");
-            return;
-        }
-
-        if (sourceAccount == destiAccount){
-            System.out.println("Cannot transfer to the same account");
-            return;
-        }
-
-        System.out.print("Transfer Amount: ");
-        double transferAmount = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
-
-        if (transferAmount < 0){
-            System.out.println("Transfer Amount cannot be negative");
-            return;
-        }
-
-        sourceAccount.withdraw(transferAmount);
-        destiAccount.deposit(transferAmount);
-        System.out.println("Transfer successful.");
-    }
 }
