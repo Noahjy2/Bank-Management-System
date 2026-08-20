@@ -1,2 +1,3 @@
-001,Elon Musk,890000.0001,Elon Musk,890000.0
-002,Amanda Tay,8000.0
+001,Elon Musk,890000.0001
+002,Amanda Tay,8000.0001
+

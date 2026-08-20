@@ -39,6 +39,23 @@ public class Bank {
         file.saveAccounts(accounts);
     }
 
+    public void deleteAccount(Scanner scanner, ArrayList<Account> accounts, FileManager file){
+        System.out.print("Enter Account Number: ");
+        String accountNumber = scanner.nextLine();
+
+        Account selectedAccount = findAccount(accountNumber, accounts);
+
+        if (selectedAccount == null){
+            System.out.println("Account not found.");
+            return;
+        }
+
+        accounts.remove(selectedAccount);
+
+        file.saveAccounts(accounts);
+        System.out.println("Account removed succesfully.");
+    }
+
     public void depositFund(Scanner scanner, ArrayList<Account> accounts){
         System.out.print("Enter Account Number: ");
         String accountNumber = scanner.nextLine();
