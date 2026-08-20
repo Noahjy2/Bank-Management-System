@@ -20,9 +20,18 @@ public class Bank {
         System.out.print("Enter Account Holder Name: ");
         String accountHolderName = scanner.nextLine();
 
-        System.out.print("Enter Initial Balance Amount: ");
-        double initialBalance = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
+        double initialBalance;
+
+        while (true) {
+            try {
+                System.out.print("Enter Initial Balance Amount: ");
+            String input = scanner.nextLine();
+            initialBalance = Double.parseDouble(input);
+            break;
+            } catch (NumberFormatException e){
+                System.out.println("Please enter valid number.");
+            }
+        }
         
         Account account = new Account(accountNumber, accountHolderName, initialBalance);
         accounts.add(account);
@@ -40,7 +49,7 @@ public class Bank {
             return;
         }
 
-        double depositAmount = 0;
+        double depositAmount;
         
         while (true){
             try {
@@ -114,9 +123,19 @@ public class Bank {
             return;
         }
 
-        System.out.print("Transfer Amount: ");
-        double transferAmount = scanner.nextDouble();
-        scanner.nextLine(); // Consume the newline character
+        double transferAmount;
+
+        while (true) {
+            try {
+                System.out.print("Transfer Amount: ");
+                String input = scanner.nextLine();
+                transferAmount = Double.parseDouble(input);
+                break;
+            } catch (NumberFormatException e){
+                System.out.println("Please enter valid number.");
+            }
+        }
+        
 
         if (transferAmount < 0){
             System.out.println("Transfer Amount cannot be negative");
