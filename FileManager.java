@@ -12,7 +12,7 @@ public class FileManager {
         
         String filePath = "files/accounts.txt";
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
 
             for (Account account : accounts){
                 writer.write(account.getAccountNumber() + "," +
